@@ -6,7 +6,7 @@
 /*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 17:16:39 by tbouder           #+#    #+#             */
-/*   Updated: 2016/03/29 11:13:16 by tbouder          ###   ########.fr       */
+/*   Updated: 2016/09/13 09:41:16 by tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,11 @@ int				ft_f(va_list pa, t_flags flag)
 	(sign == 1) ? lpa = -lpa : 0;
 	prec = (flag.preci <= 0) ? 1 : 0;
 	len = ft_nbrlen_ll(lpa) + space + prec;
-	if (flag.preci != 0)
-	{
-		ft_before_f(&flag, len + flag.preci + 1 - prec + sign, lpa);
-		(sign == 1 && (!flag.display)) ? ft_putchar('-') : 0;
-		ft_putfloat(lpa, flag.preci, flag);
-		ft_after_f(&flag, len + flag.preci + 1 - prec + sign);
-		return (len + flag.preci + 1 + flag.spaces_count + sign + space - prec);
-	}
-	else
+	if (flag.preci == 0)
 		return (ft_f_helper(flag, lpa, sign, space));
+	ft_before_f(&flag, len + flag.preci + 1 - prec + sign, lpa);
+	(sign == 1 && (!flag.display)) ? ft_putchar('-') : 0;
+	ft_putfloat(lpa, flag.preci, flag);
+	ft_after_f(&flag, len + flag.preci + 1 - prec + sign);
+	return (len + flag.preci + 1 + flag.spaces_count + sign + space - prec);
 }

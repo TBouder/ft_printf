@@ -6,7 +6,7 @@
 /*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 11:00:58 by tbouder           #+#    #+#             */
-/*   Updated: 2016/05/30 15:52:52 by tbouder          ###   ########.fr       */
+/*   Updated: 2016/09/13 09:43:00 by tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_conv_ws_case3(t_flags flags, wchar_t *lpa, int i)
 {
 	int		ln;
 
-	ln = flags.preci != 0 ? ft_wstrlen_flags(lpa, flags) : ft_wstrlen(lpa);
+	ln = flags.preci == 0 ? ft_wstrlen(lpa) : ft_wstrlen_flags(lpa, flags);
 	ft_before_str(&flags, ln);
 	while (lpa[i])
 	{
@@ -46,7 +46,7 @@ static int	ft_conv_ws_case4(t_flags flags, wchar_t *lpa, int i, int lnn)
 	char	*bin;
 	int		*nbr;
 
-	ln = flags.preci != 0 ? ft_wstrlen_flags(lpa, flags) : ft_wstrlen(lpa);
+	ln = flags.preci == 0 ? ft_wstrlen(lpa) : ft_wstrlen_flags(lpa, flags);
 	ft_before_str(&flags, ln);
 	while (lpa[i] && lnn < flags.preci)
 	{
